@@ -16,7 +16,7 @@ function generatePW () {
     return;
   };
   
-  // These variables must be below the above 'if' statement or else the alert 'ERROR' would not appear until cycling through the 4 prompts below.
+  // These variables must be below the above 'if' statement or else the alert 'ERROR' would not appear until cycling through the 4 'confirm' prompts below.
   var lowers = confirm("Would you like lowercase characters?"); // Prompts user to choose whether or not they would like "lowercase" characters.
   var uppers = confirm("Would you like uppercase characters?"); // Prompts user to choose whether or not they would like "uppercase" characters.
   var numbers = confirm("Would you like number characters?"); // Prompts user to choose whether or not they would like "number" characters.
@@ -45,34 +45,35 @@ function generatePW () {
       // .push will add the characters to the 'chosenChar' array.
       chosenChar.push(numberChar[i]);
     }
-  }
+  };
+
   // When function is called, if 'specials' is confirmed (or equals true), it will loop through the 'specialChar' array.
   if (specials === true) {
     for (var i = 0; i < specialChar.length; i++) {
       // .push will add the characters to the 'chosenChar' array.
       chosenChar.push(specialChar[i]);
     }
-  }
+  };
   
   // Loops through all characters that were selected, adds them to the empty string of 'randomPW' and randomizes them.
   for (var i = 0; i < lengthConfirm; i++) {
     randomPW += chosenChar[
       // .floor rounds this number down and .random selects a random number between 0-1. 
       // The * multiplies this random number by the length of the chosenChar to give it the value that the user chose.
-        Math.floor(Math.random() * chosenChar.length)
+      Math.floor(Math.random() * chosenChar.length)
     ];
-  }
+  };
 
   return randomPW;
-}
+};
 
 // This function renders the createdPW to the webpage. 
 function createPW() {
-  var PWText = document.querySelector("#password");
+  var pwText = document.querySelector("#password");
  
   // Takes the password created from the generatePW function and adds it into the textarea.
-  PWText.value = generatePW();
-}
+  pwText.value = generatePW();
+};
 
 // .addEventListener tells the browser that when the button "Generate Password" is clicked, run the createPW function.
 generateBtn.addEventListener("click", createPW);
